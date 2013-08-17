@@ -1,0 +1,14 @@
+development:
+  adapter: mysql2
+  host: localhost
+  database: pull_req_dev
+  username: my_awesome_user
+  password: my_awesome_password
+
+test:
+  adapter: mysql2
+  host: localhost
+  database: pull_req_test
+  username: my_awesome_user
+  password: my_awesome_password
+

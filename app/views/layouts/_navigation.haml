@@ -1,0 +1,13 @@
+.login
+  - if current_user
+    %a{href: current_user.github_url, target: '_blank'}
+      = current_user.name
+      %img{src: current_user.avatar_url, style: 'width:40px; height:40px;'}
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+  - else
+    %a{href: user_omniauth_authorize_path(:github)} Login with GitHub
+
+.logo
+  = link_to "Pull Requester", root_path, :class => 'brand'
+.links
+  = link_to "Watches", watches_path

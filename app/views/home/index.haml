@@ -1,0 +1,10 @@
+- if current_user
+  - if @watches.count == 0
+    Head to
+    = link_to 'watches', watches_path
+    to select some repos to watch
+  - @watches.each do |watch|
+    = render partial: 'watched_repos', locals: {watch: watch}
+
+- else
+  Authenticate with Github so I can get your PRs

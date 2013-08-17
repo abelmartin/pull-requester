@@ -1,0 +1,22 @@
+%table
+  %tr
+    %th Repository
+    %th Description
+    %th
+
+  - @gh_repos.each do |repo|
+    %tr
+      %td.repo_name
+        %a{href: repo[:html_url]}= repo[:name]
+      %td.repo_description= repo[:description]
+      %td.repo_actions
+        - if repo[:watch_id]
+          = form_tag(watch_path(repo[:watch_id]), method: :delete) do
+            %input.btn.btn-danger{type: 'submit', value: 'Delete'}
+        - else
+          = form_tag(watches_path, method: :post) do
+            %input#repo_id{name: 'watch[repo_id]', type: 'hidden', value: repo[:id]}
+            %input#repo_name{name: 'watch[repo_name]', type: 'hidden', value: repo[:name]}
+            %input#repo_owner{name: 'watch[repo_owner]', type: 'hidden', value: @owner}
+            %input.btn.btn-success{type: 'submit', value: 'Add'}
+

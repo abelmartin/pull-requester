@@ -1,0 +1,6 @@
+%h3
+  %a{href: "https://www.github.com/#{watch.repo_owner}/#{watch.repo_name}/pulls", target: '_blank'}
+    = "#{ watch.repo_name } (#{watch.open_reqs.count})"
+  = circle_ci_badge(watch.repo_name, 'master')
+= render partial: 'pull_requests', locals: {pulls: watch.open_reqs}
+

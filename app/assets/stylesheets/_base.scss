@@ -1,0 +1,50 @@
+@import "bootstrap";
+
+h1.title {
+  color: white;
+}
+
+h3 {
+  padding-top: 20px;
+}
+
+table {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  height: 125px;
+
+  &.avatar {
+    width: 100px;
+  }
+
+  &.status_badge {
+    width: 250px;
+  }
+}
+
+
+.login {
+  float: right;
+}
+
+.branch {
+  margin-bottom: 10px;
+}
+
+.avatar {
+  height: 80px;
+  width: 80px;
+}
+
+.navbar-inner {
+  padding: 0;
+}
