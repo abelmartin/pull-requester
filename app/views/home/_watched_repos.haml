@@ -1,3 +1,7 @@
+.remove_watch{style: 'float:right; margin-top: 40px;'}
+  = form_tag(watch_path(watch.id), method: :delete) do
+    %input.btn.btn-danger{type: 'submit', value: 'Delete Watch'}
+
 %h3
   %a{href: "https://www.github.com/#{watch.repo_owner}/#{watch.repo_name}/pulls", target: '_blank'}
     = "#{ watch.repo_name } (#{watch.open_reqs.count})"
