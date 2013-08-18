@@ -7,7 +7,5 @@ body { padding-top: 60px; }
 
 .content {
   background: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+  @include box-shadow(none);
 }
