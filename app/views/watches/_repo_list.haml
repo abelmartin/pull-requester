@@ -9,14 +9,21 @@
       %td.repo_name
         %a{href: repo[:html_url]}= repo[:name]
       %td.repo_description= repo[:description]
-      %td.repo_actions
-        - if repo[:watch_id]
-          = form_tag(watch_path(repo[:watch_id]), method: :delete) do
-            %input.btn.btn-danger{type: 'submit', value: 'Delete'}
-        - else
-          = form_tag(watches_path, method: :post) do
-            %input#repo_id{name: 'watch[repo_id]', type: 'hidden', value: repo[:id]}
-            %input#repo_name{name: 'watch[repo_name]', type: 'hidden', value: repo[:name]}
-            %input#repo_owner{name: 'watch[repo_owner]', type: 'hidden', value: @owner}
-            %input.btn.btn-success{type: 'submit', value: 'Add'}
+      %td.watch_actions
+        = form_tag(watch_path(repo[:id]),
+          method: :delete,
+          class: "remove_watch #{('active' if repo[:watch_id])}",
+          "data-repo-id" => repo[:id]) do
+          %input.btn.btn-danger{type: 'submit', value: 'Stop Watching'}
+
+        = form_tag(watches_path,
+          method: :post,
+          class: "add_watch #{('active' unless repo[:watch_id])}",
+          "data-repo-id" => repo[:id],
+          "data-repo-name" => repo[:name],
+          "data-repo-owner" => @owner) do
+          %input.repo_id{name: 'watch[repo_id]', type: 'hidden', value: repo[:id]}
+          %input.repo_name{name: 'watch[repo_name]', type: 'hidden', value: repo[:name]}
+          %input.repo_owner{name: 'watch[repo_owner]', type: 'hidden', value: @owner}
+          %input.btn.btn-success{type: 'submit', value: 'Start Watching'}
 

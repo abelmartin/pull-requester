@@ -5,3 +5,8 @@
 - elsif @orgs
   %h1= "Listing Organizations(#{ @orgs.size })"
   = render 'org_list'
+
+:coffeescript
+  $ ->
+    $('.watch_actions form').each ->
+      new ToggleWatch($(@))

@@ -1,3 +1,11 @@
+.watch_actions form{
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
 h1.title {
   color: white;
 }

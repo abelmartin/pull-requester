@@ -60,7 +60,7 @@ class WatchesController < ApplicationController
   end
 
   def destroy
-    current_user.watches.find(params[:id]).try(:destroy)
+    current_user.watches.find_by_repo_id(params[:id]).try(:destroy)
 
     respond_to do |format|
       format.html { redirect_to watches_url }
