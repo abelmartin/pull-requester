@@ -63,7 +63,7 @@ class WatchesController < ApplicationController
     current_user.watches.find_by_repo_id(params[:id]).try(:destroy)
 
     respond_to do |format|
-      format.html { redirect_to watches_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end
