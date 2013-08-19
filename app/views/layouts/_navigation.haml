@@ -7,7 +7,9 @@
   - else
     %a{href: user_omniauth_authorize_path(:github)} Login with GitHub
 
-.logo
-  = link_to "Pull Requester", root_path, :class => 'brand'
-.links
-  = link_to "Watches", watches_path
+.navbar.site_menu
+  .navbar-inner
+    = link_to "Pull Requester", root_path, :class => 'brand'
+    %ul.nav
+      %li
+        = link_to "Watches", watches_path
