@@ -7,5 +7,6 @@ script: bundle exec rspec spec
 
 before_script:
   - mysql -e 'create database pull_req_test;'
-  - bundle exec rake db:migrate
   - cp config/database_example.yml config/database.yml
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:migrate
