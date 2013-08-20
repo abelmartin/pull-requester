@@ -1,7 +1,9 @@
 language: ruby
 rvm:
   - "1.9.3"
+  - "2.0.0"
 
 script: bundle exec rspec spec
 before_script:
   - mysql -e 'create database pull_req_test;'
+  - cp config/database_example.yml config/database.yml

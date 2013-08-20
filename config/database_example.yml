@@ -7,8 +7,7 @@ development:
 
 test:
   adapter: mysql2
-  host: localhost
   database: pull_req_test
-  username: my_awesome_user
-  password: my_awesome_password
+  username: travis
+  encoding: utf8
 
