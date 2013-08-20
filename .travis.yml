@@ -4,6 +4,8 @@ rvm:
   - "2.0.0"
 
 script: bundle exec rspec spec
+
 before_script:
   - mysql -e 'create database pull_req_test;'
+  - bundle exec rake db:migrate
   - cp config/database_example.yml config/database.yml
