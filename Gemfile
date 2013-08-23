@@ -11,6 +11,7 @@ gem 'devise'
 gem 'github_api'
 gem 'compass'
 gem 'redcarpet'
+gem 'gemoji'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

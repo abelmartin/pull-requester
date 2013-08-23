@@ -76,6 +76,7 @@ GEM
       multipart-post (~> 1.2.0)
     ffi (1.9.0)
     fssm (0.2.10)
+    gemoji (1.4.0)
     github_api (0.10.2)
       addressable
       faraday (~> 0.8.7)
@@ -222,6 +223,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass
   devise
+  gemoji
   github_api
   haml (>= 3.1.6)
   haml-rails (>= 0.3.4)

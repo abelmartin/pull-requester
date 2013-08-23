@@ -14,7 +14,21 @@ module ApplicationHelper
       autolink: true
     )
 
-    @markdown.render(md_text).html_safe
+    @markdown.render(emojify_to_markdown(md_text)).html_safe
+  end
+
+  def emojify_to_markdown(md_text)
+    if md_text.present?
+      md_text.gsub(/:([a-z0-9\+\-_]+):/) do |match|
+        if Emoji.names.include?($1)
+          "![#{$1}](/images/emoji/#{$1}.png 'emoji')"
+        else
+          match
+        end
+      end
+    else
+      ''
+    end
   end
 
   def user_or_repo_href(org)
