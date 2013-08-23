@@ -10,7 +10,7 @@ gem 'omniauth-github'
 gem 'devise'
 gem 'github_api'
 gem 'compass'
-#gem 'circleci'
+gem 'redcarpet'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,6 +29,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :production do

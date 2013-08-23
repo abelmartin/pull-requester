@@ -17,7 +17,7 @@
           .branch
             %a{href: "https://github.com/howaboutwe/#{pull[:head][:repo][:name]}/commits/#{pull[:head][:ref]}", target: '_blank'}
               = pull[:head][:ref]
-          .content= pull[:body]
+          .content= render_markdown(pull[:body])
         %td.avatar
           %a.creator_link{href: "https://github.com/#{pull[:user][:login]}", target: '_blank'}
             .pr_creator= pull[:user][:login]

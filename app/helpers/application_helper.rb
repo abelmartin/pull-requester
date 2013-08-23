@@ -8,6 +8,15 @@ module ApplicationHelper
     end
   end
 
+  def render_markdown(md_text)
+    @markdown ||= Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML.new( link_attributes: {target: '_blank'}),
+      autolink: true
+    )
+
+    @markdown.render(md_text).html_safe
+  end
+
   def user_or_repo_href(org)
     if (current_user.github_login != org[:login])
       "/watches?org=#{org[:login]}"
