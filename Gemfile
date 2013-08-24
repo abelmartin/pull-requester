@@ -28,6 +28,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'bazaar'
+  gem 'faker'
+  gem 'factory_girl'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'capybara'

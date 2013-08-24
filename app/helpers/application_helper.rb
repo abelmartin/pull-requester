@@ -1,11 +1,15 @@
 module ApplicationHelper
-  def circle_ci_badge(repo, branch)
-    base_url = 'https://circleci.com/gh/howaboutwe/'
+  def circle_ci_badge(owner, repo, branch)
+    base_url = "https://circleci.com/gh/#{owner}/"
     full_url = "#{base_url}#{repo}/tree/#{branch}"
     badge_url = "#{full_url}.png"
     link_to(full_url, target: '_blank') do
       image_tag badge_url
     end
+  end
+
+  def travis_ci_badge(owner, repo, branch=nil)
+    "https://travis-ci.org/#{owner}/#{repo}.png"
   end
 
   def render_markdown(md_text)

@@ -1,21 +1,21 @@
-- if pulls.count > 0
+- if watch.open_reqs.count > 0
   %table
     %tr
       %th Build Status
       %th ID & Title
       %th Creator
       %th Reviewer
-    - pulls.each do |pull|
+    - watch.open_reqs.each do |pull|
       %tr
         %td.status_badge
           .badge
-            = circle_ci_badge(pull[:head][:repo][:name], pull[:head][:ref])
+            = circle_ci_badge(watch.repo_owner, watch.repo_name, pull[:head][:ref])
         %td.pull_info
           %h4
             %a{href: pull[:html_url], target: '_blank'}
               = "##{pull[:number]}: #{pull[:title]}"
           .branch
-            %a{href: "https://github.com/howaboutwe/#{pull[:head][:repo][:name]}/commits/#{pull[:head][:ref]}", target: '_blank'}
+            %a{href: "https://github.com/#{watch.repo_owner}/#{watch.repo_name}/commits/#{pull[:head][:ref]}", target: '_blank'}
               = pull[:head][:ref]
           .content= render_markdown(pull[:body])
         %td.avatar
