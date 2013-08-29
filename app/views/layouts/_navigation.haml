@@ -10,6 +10,7 @@
 .navbar.site_menu
   .navbar-inner
     = link_to "Pull Requester", root_path, :class => 'brand'
-    %ul.nav
-      %li= link_to "Dashboard", root_path
-      %li= link_to "Watches", watches_path
+    - if current_user
+      %ul.nav
+        %li= link_to "Dashboard", root_path
+        %li= link_to "Watches", watches_path

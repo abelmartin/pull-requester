@@ -18,7 +18,7 @@
             %a{href: pull[:html_url], target: '_blank'}
               = "##{pull[:number]}: #{pull[:title]}"
           .branch
-            branch: 
+            branch:
             %a{href: "https://github.com/#{watch.repo_owner}/#{watch.repo_name}/commits/#{pull[:head][:ref]}", target: '_blank'}
               = pull[:head][:ref]
           .content= render_markdown(pull[:body])
