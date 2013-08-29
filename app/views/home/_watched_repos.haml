@@ -4,7 +4,12 @@
 
 %h3
   %a{href: "https://www.github.com/#{watch.repo_owner}/#{watch.repo_name}/pulls", target: '_blank'}
-    = "#{ watch.repo_name } (#{watch.open_reqs.count})"
+    = watch.repo_name
+    = "(#{watch.open_reqs.count})" unless watch.open_reqs.nil?
   = circle_ci_badge(watch.repo_owner, watch.repo_name, 'master')
-= render partial: 'pull_requests', locals: {watch: watch}
+- if watch.open_reqs.nil?
+  .unavailable{style: 'font-weight: bold;'}
+    This repository is unavailable.  Please verify that you still have access.
+- else
+  = render partial: 'pull_requests', locals: {watch: watch}
 

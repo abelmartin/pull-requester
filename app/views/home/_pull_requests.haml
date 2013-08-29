@@ -1,4 +1,7 @@
-- if watch.open_reqs.count > 0
+- if watch.open_reqs.nil?
+  -# Nothing to see here.
+
+- elsif watch.open_reqs.count > 0
   %table
     %tr
       %th Build Status
@@ -27,5 +30,8 @@
             %a.creator_link{href: "https://github.com/#{pull[:assignee][:login]}", target: '_blank'}
               .pr_assignee= pull[:assignee][:login]
               %img.avatar{src: pull[:assignee][:avatar_url]}
+
 - else
-  There are no open pull requests
+  .no_active_prs{style: 'font-weight: bold;'}
+    There are no open pull requests
+
