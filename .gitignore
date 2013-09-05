@@ -28,7 +28,6 @@ db/*.sqlite3
 .sass-cache
 /config/config.yml
 /config/database.yml
-/config/newrelic.yml
 /config/github_credentials.yml
 /coverage.data
 /coverage/
