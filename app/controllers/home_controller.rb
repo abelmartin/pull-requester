@@ -16,6 +16,7 @@ class HomeController < ApplicationController
           watch.open_reqs = nil
         end
       end
+
     end
   end
 end

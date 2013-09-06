@@ -1,3 +1,7 @@
+$avatar_width: 100px;
+$status_badge_width: 250px;
+$site_width: 1170px;
+
 img[title=emoji]{
   height: 20px;
   width: 20px;
@@ -42,6 +46,11 @@ td {
 
   &.status_badge {
     width: 250px;
+  }
+
+  &.pull_info .content {
+    overflow: auto;
+    width: $site_width - (3*$avatar_width) - $status_badge_width;
   }
 }
 
