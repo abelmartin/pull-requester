@@ -7,7 +7,7 @@
     %tr
       %td{style: 'width: 120px;'}
         %a{href: user_or_repo_href(org)}
-          %img{src: org[:avatar_url]}
+          %img{src: org[:avatar_url], style: 'height: 80px; width: 80px;'}
       %td
         %h2
           %a{href: user_or_repo_href(org)}= org[:login]
