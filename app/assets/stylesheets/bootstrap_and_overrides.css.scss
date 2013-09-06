@@ -10,6 +10,8 @@ body { padding-top: 30px; }
   @include box-shadow(none);
 }
 
+.badge { background-color: inherit; }
+
 .site_menu {
   &.navbar { margin-bottom: 0; }
   & .navbar-inner {
