@@ -1,7 +1,7 @@
 module ApplicationHelper
   def circle_ci_badge(owner, repo, branch)
     base_url = "https://circleci.com/gh/#{owner}/"
-    full_url = "#{base_url}#{repo}/tree/#{branch}"
+    full_url = "#{base_url}#{u(repo)}/tree/#{u(branch)}"
     badge_url = "#{full_url}.png"
     link_to(full_url, target: '_blank') do
       image_tag badge_url
