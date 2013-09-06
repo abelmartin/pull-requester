@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
+  def ping
+    head :ok
+  end
+
   def index
     if current_user
       gh = Github.new(oauth_token: session[:gh_token])
