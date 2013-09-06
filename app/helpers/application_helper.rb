@@ -4,7 +4,10 @@ module ApplicationHelper
     full_url = "#{base_url}#{u(repo)}/tree/#{u(branch)}"
     badge_url = "#{full_url}.png"
     link_to(full_url, target: '_blank') do
-      image_tag badge_url
+      image_tag(
+        badge_url,
+        onerror: "this.onerror=null;this.src='/assets/status_unknown.png'"
+      )
     end
   end
 

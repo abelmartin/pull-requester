@@ -13,5 +13,10 @@ describe ApplicationHelper do
       badge_url =~ /src.*https.*my_repo\%2fslash/
       badge_url =~ /src.*https.*my_branch\%2fslash/
     end
+
+    it "has 'onerror' attribute" do
+      badge_url = helper.circle_ci_badge('owner', 'my_repo', 'my_branch')
+      badge_url.should have_selector('[onerror]')
+    end
   end
 end
