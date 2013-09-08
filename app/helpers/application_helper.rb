@@ -6,7 +6,7 @@ module ApplicationHelper
     link_to(full_url, target: '_blank') do
       image_tag(
         badge_url,
-        onerror: "this.onerror=null;this.src='/assets/status_unknown.png'"
+        onerror: "this.onerror=null;this.src='/assets/status_unknown_2.png'"
       )
     end
   end
