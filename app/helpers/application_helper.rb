@@ -16,12 +16,12 @@ module ApplicationHelper
   end
 
   def render_markdown(md_text)
-    @markdown ||= Redcarpet::Markdown.new(
-      Redcarpet::Render::HTML.new( link_attributes: {target: '_blank'}),
-      autolink: true
-    )
+    content = GitHub::Markdown.render_gfm(emojify_to_markdown(md_text))
 
-    @markdown.render(emojify_to_markdown(md_text)).html_safe
+    # I'm not in love with this.
+    # I might go with <base target="_blank"> in head later
+    # And try to force <...target="_parent"...> later :-/
+    content.gsub(/(href=".*")/, '\1 target="_blank" ').html_safe
   end
 
   def emojify_to_markdown(md_text)

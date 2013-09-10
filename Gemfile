@@ -10,7 +10,7 @@ gem 'omniauth-github'
 gem 'devise'
 gem 'github_api'
 gem 'compass'
-gem 'redcarpet'
+gem 'github-markdown'
 gem 'gemoji'
 gem 'newrelic_rpm'
 
