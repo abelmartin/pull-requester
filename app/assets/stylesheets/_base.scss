@@ -1,6 +1,11 @@
 $avatar_width: 100px;
 $status_badge_width: 250px;
 $site_width: 1170px;
+$iconSpritePath: asset-url('glyphicons-halflings.png', image);
+$iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
+@import "bootstrap";
+
+body { padding-top: 60px; } // Necessary for the fixed nav.
 
 img[title=emoji]{
   height: 20px;

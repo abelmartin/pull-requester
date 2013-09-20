@@ -1,17 +1,16 @@
-.login
+.navbar-header
+  = link_to "Pull Requester", root_path, :class => 'navbar-brand'
+.navbar-collapse.collapse
   - if current_user
-    %a{href: current_user.github_url, target: '_blank'}
-      = current_user.name
-      %img{src: current_user.avatar_url, style: 'width:40px; height:40px;'}
-    = link_to 'Logout', destroy_user_session_path, method: :delete
-  - else
-    %a{href: user_omniauth_authorize_path(:github)} Login with GitHub
-
-.navbar.site_menu
-  .navbar-inner
-    = link_to "Pull Requester", root_path, :class => 'brand'
+    %ul.nav.navbar-nav
+      %li= link_to "Dashboard", root_path
+      %li= link_to "Watches", watches_path
+      %li= link_to "Issues/Features", 'https://github.com/abelmartin/pull-requester/issues', target: '_blank'
+  %ul.nav.navbar-nav.navbar-right
     - if current_user
-      %ul.nav
-        %li= link_to "Dashboard", root_path
-        %li= link_to "Watches", watches_path
-        %li= link_to "Issues/Features", 'https://github.com/abelmartin/pull-requester/issues', target: '_blank'
+      %a{href: current_user.github_url, target: '_blank'}
+        = current_user.name
+        %img{src: current_user.avatar_url, style: 'width:40px; height:40px;'}
+      = link_to 'Logout', destroy_user_session_path, method: :delete
+    - else
+      %a{href: user_omniauth_authorize_path(:github)} Login with GitHub

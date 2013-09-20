@@ -5,7 +5,7 @@ PullRequester::Application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  match '/ping' => 'home#ping'
+  match '/ping' => 'home#ping', via: :get
 
   root to: "home#index"
 end

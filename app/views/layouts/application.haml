@@ -1,30 +1,28 @@
-!!!
+!!! 5
 %html
   %head
-    -#%base{target: '_blank'}
+    - #%base{target: '_blank'}
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     %title= content_for?(:title) ? yield(:title) : "Pull Requester"
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %meta{:content => "See the all code that wants to get into the code you like", :name => "description"}
+    %meta{:content => "Abel Martin", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
-    #main{:role => "main"}
+    .navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
       .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
-          %footer
+        = render 'layouts/navigation'
+    #main.container
+      .content
+        .row
+          .span12
+            = render 'layouts/messages'
+            = yield
+        %footer
     - if Rails.env.production?
       :javascript
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

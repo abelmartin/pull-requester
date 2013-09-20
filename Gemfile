@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
-gem 'rails', '3.2.13'
+ruby '2.1.0'
+gem 'rails', '4.0.2'
 
 gem 'jquery-rails'
-gem "haml", ">= 3.1.6"
-gem "haml-rails", ">= 0.3.4", :group => :development
-gem "bootstrap-sass", ">= 2.0.4.0"
+gem "haml", "4.0.5"
+gem "haml-rails", "0.5.3", :group => :development
+gem "bootstrap-sass", "~> 3.1.1.0"
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'devise'
@@ -13,12 +14,12 @@ gem 'compass'
 gem 'github-markdown'
 gem 'gemoji'
 gem 'newrelic_rpm'
+gem 'protected_attributes'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+#Used to be in Assets...but that group is gone now.
+gem 'sass-rails',   '4.0.1'
+gem 'coffee-rails', '4.0.1'
+gem 'uglifier', '>= 1.0.3'
 
 group :development, :test do
   gem 'mysql2'
@@ -39,5 +40,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
