@@ -8,16 +8,15 @@ gem "haml-rails", "0.5.3", :group => :development
 gem "bootstrap-sass", "~> 3.1.1.0"
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'devise'
+gem 'devise', '3.2.2'
 gem 'github_api'
-gem 'compass'
 gem 'github-markdown'
 gem 'gemoji'
 gem 'newrelic_rpm'
 gem 'protected_attributes'
 
-#Used to be in Assets...but that group is gone now.
 gem 'sass-rails',   '4.0.1'
+gem 'compass-rails'
 gem 'coffee-rails', '4.0.1'
 gem 'uglifier', '>= 1.0.3'
 

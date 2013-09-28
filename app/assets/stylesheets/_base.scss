@@ -1,4 +1,8 @@
+@import "compass/css3";
+/*@import "compass/utilities";*/
+
 $avatar_width: 100px;
+$border_color: rgb(212, 212, 212);
 $status_badge_width: 250px;
 $site_width: 1170px;
 $iconSpritePath: asset-url('glyphicons-halflings.png', image);
@@ -11,6 +15,7 @@ img[title=emoji]{
   height: 20px;
   width: 20px;
 }
+
 .watch_actions form{
   display: none;
 
@@ -59,9 +64,44 @@ td {
   }
 }
 
-
 .login {
   float: right;
+  &:hover .user-menu{
+    display: block;
+  }
+}
+
+.user-name { font-weight: bold; }
+.user-avatar { margin-right: 5px }
+.user-menu {
+  @include border-radius( 5px );
+  @include border-top-radius( 0px );
+  @include box-shadow( rgba(black, 0.2) 0 0 4px );
+
+  background-color: #fefefe;
+  border: solid 1px $border_color;
+  border-top: none;
+  display: none;
+  margin-left: 0;
+  /*Dunno why I need extra right padding, but it appears I do.*/
+  padding: 10px 20px 10px 15px;
+  position: absolute;
+  z-index: 5;
+
+  li {
+    border-bottom: solid 1px $border_color;
+    list-style: none;
+
+    a {
+      display: block;
+      padding: 5px;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      a { padding-bottom: 0; }
+    }
+  }
 }
 
 .branch {
@@ -75,4 +115,12 @@ td {
 
 .navbar-inner {
   padding: 0;
+}
+
+.content {
+  @include border-radius( 0 0 6px 6px );
+
+  background-color: #eee;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
 }

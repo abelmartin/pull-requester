@@ -1,4 +1,4 @@
-class WatchesController < ApplicationController
+class RepositoriesController < ApplicationController
   before_filter :authenticate_user!
 
   def index

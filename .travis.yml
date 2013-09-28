@@ -1,6 +1,11 @@
 language: ruby
 rvm:
+<<<<<<< HEAD
   - "2.1.0"
+=======
+  - "1.9.3-p448"
+  - "2.0.0-p247"
+>>>>>>> Reducing history complexity to merge rails 4 update
 
 script: bundle exec rspec spec
 
