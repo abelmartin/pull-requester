@@ -9,13 +9,13 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'devise'
 gem 'github_api'
-gem 'compass'
 gem 'github-markdown'
 gem 'gemoji'
 gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'compass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
