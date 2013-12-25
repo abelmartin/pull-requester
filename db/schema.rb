@@ -11,11 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130928185206) do
+ActiveRecord::Schema.define(:version => 20131221023225) do
 
   create_table "build_services", :force => true do |t|
     t.string "name",          :limit => 127, :null => false
     t.string "badge_pattern", :limit => 256, :null => false
+  end
+
+  create_table "pull_requests", :force => true do |t|
+    t.integer  "watch_id"
+    t.integer  "comments",        :default => 0, :null => false
+    t.datetime "last_comment_at"
+    t.string   "last_comment_by"
+    t.integer  "commits",         :default => 0, :null => false
+    t.datetime "last_commit_at"
+    t.integer  "additions",       :default => 0, :null => false
+    t.integer  "deletions",       :default => 0, :null => false
+    t.integer  "files_changed",   :default => 0, :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|
