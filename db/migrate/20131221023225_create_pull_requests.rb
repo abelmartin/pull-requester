@@ -1,7 +1,7 @@
 class CreatePullRequests < ActiveRecord::Migration
   def change
     create_table :pull_requests do |t|
-      t.references :watch
+      t.references :repository
 
       t.integer :comments, null: false, default: 0
       t.datetime :last_comment_at, null: true
