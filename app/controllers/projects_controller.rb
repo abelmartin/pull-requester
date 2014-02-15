@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 
       #let's add the project_id if it matches one we're watching
       @gh_repos.each do |repo|
-        repo[:project_id] = @projects.find_by_repo_id(repo[:id]).try(:id)
+        repo[:project_id] = @projects.find_by_gh_id(repo[:id]).try(:id)
       end
 
       @gh_repos.sort_by!{|repo| repo[:name].upcase}
@@ -49,10 +49,10 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_url, notice: 'Repo successfully added.' }
+        format.html { redirect_to projects_url, notice: 'Repository successfully added.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { redirect_to projects_url, notice: 'Failed to watch repo.' }
+        format.html { redirect_to projects_url, notice: 'Failed to watch repositories.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end

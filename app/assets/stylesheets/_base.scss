@@ -1,5 +1,4 @@
 @import "compass/css3";
-/*@import "compass/utilities";*/
 
 $avatar_width: 100px;
 $border_color: rgb(212, 212, 212);
@@ -14,18 +13,6 @@ body { padding-top: 60px; } // Necessary for the fixed nav.
 img[title=emoji]{
   height: 20px;
   width: 20px;
-}
-
-.watch_actions form{
-  display: none;
-
-  &.active {
-    display: block;
-  }
-}
-
-.remove_watch form{
-  margin-bottom: 0px;
 }
 
 h1.title {
@@ -64,19 +51,24 @@ td {
   }
 }
 
-.login {
-  float: right;
-  &:hover .user-menu{
+.repository_actions form{
+  display: none;
+
+  &.active {
     display: block;
   }
+}
+
+.remove_repository form{
+  margin-bottom: 0px;
 }
 
 .user-name { font-weight: bold; }
 .user-avatar { margin-right: 5px }
 .user-menu {
-  @include border-radius( 5px );
-  @include border-top-radius( 0px );
-  @include box-shadow( rgba(black, 0.2) 0 0 4px );
+  // @include border-radius( 5px );
+  // @include border-top-radius( 0px );
+  // @include box-shadow( rgba(black, 0.2) 0 0 4px );
 
   background-color: #fefefe;
   border: solid 1px $border_color;
@@ -113,14 +105,9 @@ td {
   width: 80px;
 }
 
-.navbar-inner {
-  padding: 0;
-}
-
 .content {
   @include border-radius( 0 0 6px 6px );
 
-  background-color: #eee;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
 }

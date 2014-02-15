@@ -1,5 +1,5 @@
 PullRequester::Application.routes.draw do
-  # resources :watches
+  resources :repositories
   resource :account, only: [:show, :update]
 
   devise_for :users, controllers: {
@@ -7,8 +7,6 @@ PullRequester::Application.routes.draw do
   }
 
   match '/ping' => 'home#ping', via: :get
-  get '/repositories' => 'watches#repositories', as: :repositories
-  put '/repositories' => 'watches#update_repositories', as: :update_repositories
 
   root to: "home#index"
 end

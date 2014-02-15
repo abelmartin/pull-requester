@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:github]
 
-  has_many :watches
+  has_many :repositories
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 end

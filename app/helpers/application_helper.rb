@@ -40,9 +40,9 @@ module ApplicationHelper
 
   def user_or_repo_href(org)
     if (current_user.github_login != org[:login])
-      "/watches?org=#{org[:login]}"
+      "/repositories?org=#{org[:login]}"
     else
-      "/watches?user=#{org[:login]}"
+      "/repositories?user=#{org[:login]}"
     end
   end
 

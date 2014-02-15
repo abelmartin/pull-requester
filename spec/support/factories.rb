@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence(:repo_id) {|n| n + 1000 }
+  sequence(:gh_id) {|n| n + 1000 }
   sequence(:omni_uid) {|n| n + 500 }
   sequence(:email) { |n| "#{n}@example.com" }
 
@@ -18,6 +18,6 @@ FactoryGirl.define do
     user
     repo_name {Bazaar.heroku}
     repo_owner {Faker::Name.name.camelize}
-    repo_id {generate :repo_id}
+    gh_id {generate :gh_id}
   end
 end

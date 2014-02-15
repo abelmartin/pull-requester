@@ -1,0 +1,27 @@
+%table
+  %tr
+    %th Repository
+    %th Description
+    %th
+
+  - @gh_repos.each do |repo|
+    %tr
+      %td.repo_name
+        %a{href: repo[:html_url]}= repo[:name]
+      %td.repo_description= repo[:description]
+      %td.repository_actions
+        = form_tag(repository_path(repo[:id]),
+          method: :delete,
+          class: "remove_repository #{('active' if repo[:local_gh_id])}",
+          id: "remove_repository_#{repo[:id]}") do
+          %input{name: 'id', type: 'hidden', value: repo[:id]}
+          %input.btn.btn-danger{type: 'submit', value: 'Stop Watching'}
+
+        = form_tag(repositories_path,
+          method: :post,
+          class: "add_repository #{('active' unless repo[:local_gh_id])}",
+          id: "add_repository_#{repo[:id]}") do
+          %input{name: 'repository[gh_id]', type: 'hidden', value: repo[:id]}
+          %input{name: 'repository[name]', type: 'hidden', value: repo[:name]}
+          %input{name: 'repository[owner]', type: 'hidden', value: @owner}
+          %input.btn.btn-success{type: 'submit', value: 'Start Watching'}

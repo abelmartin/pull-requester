@@ -6,7 +6,9 @@
   %h1= "Listing Organizations(#{ @orgs.size })"
   = render 'org_list'
 
+/ We can be more efficient here.
+/ We don't need a new instance of ToggleRepositoryWatch for each form
 :coffeescript
   $ ->
-    $('.watch_actions form').each ->
-      new ToggleWatch($(@))
+    $('.repository_actions form').each ->
+      new ToggleRepositoryWatch($(@))

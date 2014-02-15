@@ -19,3 +19,6 @@
 * Upgraded bootstrap to 3
 * `config.assets.initialize_on_precompile = true` now, but Heroku may not like this.
 * `rake rails:update:bin` to create a special bin folder that Heroku needs
+
+* Upgrade Complete, but should have happened *BEFORE* additional changes took place.
+* General lesson learned: When in doubt, delete Gemfile.lock and bunle again. :grin:

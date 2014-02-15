@@ -1,0 +1,14 @@
+%h3
+  .remove_repository{style: 'float:right;'}
+    = form_tag(repository_path(repository.id), method: :delete) do
+      %input.btn.btn-danger{type: 'submit', value: 'Delete Watch'}
+
+  %a{href: "https://www.github.com/#{repository.owner}/#{repository.name}/pulls", target: '_blank'}
+    = repository.name
+    = "(#{repository.open_reqs.count})" unless repository.open_reqs.nil?
+  = circle_ci_badge(repository.owner, repository.name, 'master')
+- if repository.open_reqs.nil?
+  .unavailable{style: 'font-weight: bold;'}
+    This repository is unavailable.  Please verify that you still have access.
+- else
+  = render partial: 'pull_requests', locals: {repository: repository}
