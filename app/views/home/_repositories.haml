@@ -1,0 +1,15 @@
+.remove_watch{style: 'float:right; margin-top: 40px;'}
+  = form_tag(repository_path(repository.id), method: :delete) do
+    %input.btn.btn-danger{type: 'submit', value: 'Delete Watch'}
+
+%h3
+  %a{href: "https://www.github.com/#{repository.repo_owner}/#{repository.repo_name}/pulls", target: '_blank'}
+    = repository.repo_name
+    = "(#{repository.open_reqs.count})" unless repository.open_reqs.nil?
+  = circle_ci_badge(repository.repo_owner, repository.repo_name, 'master')
+- if repository.open_reqs.nil?
+  .unavailable{style: 'font-weight: bold;'}
+    This repository is unavailable.  Please verify that you still have access.
+- else
+  = render partial: 'pull_requests', locals: {prs: repository.pull_requests}
+

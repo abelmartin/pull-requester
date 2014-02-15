@@ -4,7 +4,7 @@ class RepositoriesController < ApplicationController
   def index
     gh = Github.new(oauth_token: session[:gh_token])
     org = user = nil
-    @watches = current_user.watches
+    @repositories = current_user.repositories
 
     if org = params[:org] || user = params[:user]
       @gh_repos = []
@@ -25,7 +25,7 @@ class RepositoriesController < ApplicationController
 
       #let's add the watch_id if it matches one we're watching
       @gh_repos.each do |repo|
-        repo[:watch_id] = @watches.find_by_repo_id(repo[:id]).try(:id)
+        repo[:watch_id] = @repositories.find_by_repo_id(repo[:id]).try(:id)
       end
 
       @gh_repos.sort_by!{|repo| repo[:name].upcase}
@@ -41,26 +41,26 @@ class RepositoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @watches }
+      format.json { render json: @repositories }
     end
   end
 
   def create
-    @watch = current_user.watches.build(params[:watch])
+    @watch = current_user.repositories.build(params[:watch])
 
     respond_to do |format|
       if @watch.save
-        format.html { redirect_to watches_url, notice: 'Repo successfully added.' }
+        format.html { redirect_to repositories_url, notice: 'Repo successfully added.' }
         format.json { render json: @watch, status: :created, location: @watch }
       else
-        format.html { redirect_to watches_url, notice: 'Failed to watch repo.' }
+        format.html { redirect_to repositories_url, notice: 'Failed to watch repo.' }
         format.json { render json: @watch.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    current_user.watches.find_by_repo_id(params[:id]).try(:destroy)
+    current_user.repositories.find_by_repo_id(params[:id]).try(:destroy)
 
     respond_to do |format|
       format.html { redirect_to root_url }
