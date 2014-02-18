@@ -66,9 +66,10 @@ td {
 .user-name { font-weight: bold; }
 .user-avatar { margin-right: 5px }
 .user-menu {
-  // @include border-radius( 5px );
-  // @include border-top-radius( 0px );
-  // @include box-shadow( rgba(black, 0.2) 0 0 4px );
+  .user-menu-container:hover & { display: block; }
+  @include border-radius( 5px );
+  @include border-top-radius( 0px );
+  @include box-shadow( rgba(black, 0.2) 0 0 4px );
 
   background-color: #fefefe;
   border: solid 1px $border_color;

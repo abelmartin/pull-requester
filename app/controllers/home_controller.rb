@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     if current_user
       gh = Github.new(oauth_token: session[:gh_token])
       @repositories = current_user.repositories
-      # binding.pry
       @repositories.each do |repo|
         begin
           repo.open_reqs = gh.pull_requests.all(repo.owner, repo.name)
@@ -17,7 +16,6 @@ class HomeController < ApplicationController
           repo.open_reqs = nil
         end
       end
-
     end
   end
 end

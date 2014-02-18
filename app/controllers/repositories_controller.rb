@@ -61,7 +61,7 @@ class RepositoriesController < ApplicationController
   end
 
   def destroy
-    @repositories.find_by_gh_id(params[:id]).try(:destroy)
+    @repositories.find_by_id(params[:id]).try(:destroy)
 
     respond_to do |format|
       format.html { redirect_to root_url }
