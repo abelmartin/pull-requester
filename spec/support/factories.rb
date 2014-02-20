@@ -14,10 +14,10 @@ FactoryGirl.define do
     github_login {Faker::Internet.user_name}
   end
 
-  factory :watch do
+  factory :repository do
     user
-    repo_name {Bazaar.heroku}
-    repo_owner {Faker::Name.name.camelize}
+    name {Bazaar.heroku}
+    owner {Faker::Name.name.camelize}
     gh_id {generate :gh_id}
   end
 end
