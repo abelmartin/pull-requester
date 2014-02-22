@@ -1,0 +1,19 @@
+table#organizations {
+  h2 { margin: 0; }
+  td {
+    vertical-align: middle;
+    padding-top: 0;
+  }
+}
+
+table#remote_repositories {
+  td {
+    height: auto;
+    padding-top: 0;
+    vertical-align: middle;
+  }
+
+  .repository_actions {
+    padding: 10px 0;
+  }
+}

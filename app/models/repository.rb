@@ -5,5 +5,5 @@ class Repository < ActiveRecord::Base
 
   attr_accessible :gh_id, :name, :owner, :build_service_id
 
-  attr_accessor :open_reqs
+  attr_accessor :open_reqs, :assignees
 end

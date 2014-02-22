@@ -8,7 +8,7 @@
     - repository.open_reqs.each do |pull|
       %tr
         %td.status_badge
-          .badge
+          .badge_image
             = circle_ci_badge(repository.owner, repository.name, pull[:head][:ref])
         %td.pull_info
           %h4
@@ -24,10 +24,19 @@
             .pr_creator= pull[:user][:login]
             %img.avatar{src: pull[:user][:avatar_url]}
         %td.avatar
-          - if pull[:assignee]
-            %a.creator_link{href: "https://github.com/#{pull[:assignee][:login]}", target: '_blank'}
-              .pr_assignee= pull[:assignee][:login]
-              %img.avatar{src: pull[:assignee][:avatar_url]}
+          - assigned = pull[:assignee] || {}
+          %a.creator_link{href: "https://github.com/#{assigned[:login] || repository.owner}", target: '_blank'}
+            .pr_assignee= assigned[:login] || "Unassigned"
+            %img.avatar{src: assigned[:avatar_url]}
+
+          %select.chosen{id: "pull_#{pull[:id]}_assignee", data: {repository_id: repository.id, pull_number: pull[:number]}}
+            - repository.assignees.each do |assignee|
+              %option{value: assignee[:login], data: {avatar_url: assignee[:avatar_url]}, selected: pull.try(:[], :assignee).try(:[], :login) == assignee[:login] }= assignee[:login]
+
+  - content_for :javascript_bottom do
+    :coffee
+      $ -> (new QuickAssigner()).start()
+
 
 - else
   .no_active_prs{style: 'font-weight: bold;'}

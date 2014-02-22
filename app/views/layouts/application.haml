@@ -9,7 +9,6 @@
     %meta{:content => "See the all code that wants to get into the code you like", :name => "description"}
     %meta{:content => "Abel Martin", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
   %body
@@ -23,6 +22,8 @@
             = render 'layouts/messages'
             = yield
         %footer
+    = javascript_include_tag "application"
+    = yield :javascript_bottom
     - if Rails.env.production?
       :javascript
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -46,17 +46,33 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @watch = @repositories.build(params[:repository])
+    @repository = @repositories.build(params[:repository])
 
-    # binding.pry
     respond_to do |format|
-      if @watch.save
+      if @repository.save
         format.html { redirect_to repositories_url, notice: 'Repo successfully added.' }
-        format.json { render json: @watch, status: :created, location: @watch }
+        format.json { render json: @repository, status: :created, location: @repository }
       else
         format.html { redirect_to repositories_url, notice: 'Failed to watch repo.' }
-        format.json { render json: @watch.errors, status: :unprocessable_entity }
+        format.json { render json: @repository.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def assign_user
+    begin
+      repository = @repositories.find_by_id params[:id]
+      gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
+
+      gh.issues.edit(
+        repository.owner,
+        repository.name,
+        params[:pull_number],
+        assignee: params[:assignee_login]
+      )
+      render json: {success: true}
+    rescue Exception => e
+      render json: {success: false, errors: e}, status: 500
     end
   end
 

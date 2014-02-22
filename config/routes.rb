@@ -1,5 +1,10 @@
 PullRequester::Application.routes.draw do
-  resources :repositories
+  resources :repositories do
+    member do
+      put :assign_user
+    end
+  end
+
   resource :account, only: [:show, :update]
 
   devise_for :users, controllers: {

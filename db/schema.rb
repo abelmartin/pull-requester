@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140220191846) do
     t.integer  "additions",       default: 0, null: false
     t.integer  "deletions",       default: 0, null: false
     t.integer  "files_changed",   default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "repositories", force: true do |t|
