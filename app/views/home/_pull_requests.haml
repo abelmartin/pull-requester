@@ -11,7 +11,7 @@
           .badge_image
             = circle_ci_badge(repository.owner, repository.name, pull[:head][:ref])
         %td.pull_info
-          %h4
+          %h4.repo_title
             %a{href: pull[:html_url], target: '_blank'}
               = "##{pull[:number]}: #{pull[:title]}"
           .branch
@@ -32,10 +32,6 @@
           %select.chosen{id: "pull_#{pull[:id]}_assignee", data: {repository_id: repository.id, pull_number: pull[:number]}}
             - repository.assignees.each do |assignee|
               %option{value: assignee[:login], data: {avatar_url: assignee[:avatar_url]}, selected: pull.try(:[], :assignee).try(:[], :login) == assignee[:login] }= assignee[:login]
-
-  - content_for :javascript_bottom do
-    :coffee
-      $ -> (new QuickAssigner()).start()
 
 
 - else

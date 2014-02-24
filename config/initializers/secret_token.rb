@@ -5,3 +5,4 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 PullRequester::Application.config.secret_token = '9860df2a3016b331b2926ab702b0b49e52300c17e2b9f2ce823d9820daa1049d14576b72355a161c2f3d69344a1b917f8ac6c85c186f54895835d5028bd2be11'
+PullRequester::Application.config.secret_key_base = '8384fd5b73219e7cf9802cdfee125e734d25f7aeb1da5adbc50a43489db7118d'

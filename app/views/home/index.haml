@@ -6,5 +6,9 @@
   - else
     = render partial: 'repository', collection: @repositories
 
+    - content_for :javascript_bottom do
+      :coffee
+        $ -> (new QuickAssigner()).start()
+
 - else
   Authenticate with Github so I can get your PRs

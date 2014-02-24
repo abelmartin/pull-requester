@@ -30,7 +30,7 @@ end
 
 group :test do
   gem 'bazaar'
-  gem 'faker'
+  gem 'ffaker'
   gem 'factory_girl'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
