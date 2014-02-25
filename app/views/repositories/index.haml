@@ -8,7 +8,8 @@
 
 / We can be more efficient here.
 / We don't need a new instance of ToggleRepositoryWatch for each form
-:coffeescript
-  $ ->
-    $('.repository_actions form').each ->
-      new ToggleRepositoryWatch($(@))
+- content_for :javascript_bottom do
+  :coffeescript
+    $ ->
+      $('.repository_actions form').each ->
+        new ToggleRepositoryWatch($(@))
