@@ -11,11 +11,13 @@ class HomeController < ApplicationController
         begin
           repo.open_reqs = gh.pull_requests.all(repo.owner, repo.name)
 
+          # binding.pry
           repo.assignees = [{login: '', avatar_url: ''}] # initialize
           gh.issues.assignees.all(repo.owner, repo.name).each do |assignees|
             repo.assignees.push( { login: assignees.login, avatar_url: assignees.avatar_url } )
           end
         rescue Exception => e
+          # binding.pry
           #Something went crazy when we tried to make this call.
           #Consider real messages in the future for 401 vs 404 vs 500,etc.
           repo.open_reqs = nil
