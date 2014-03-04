@@ -49,17 +49,27 @@ describe HomeController do
         get :index
       end
 
-      it 'assigns any found open PRs to Repository#open_reqs' do
-        pending
-        # prs_double = double
-        # prs_double.stub(all: [{some_obj: 1}])
-        prs_double = double(all: [{some_obj: 1}])
-        Github::Client.any_instance.stub(pull_requests: prs_double)
-        FactoryGirl.create_list :repository, 3, user:user
+      context "when calling GH" do
+        before do
+          FactoryGirl.create :repository, user: user
+          Github::Client.any_instance.stub_chain(:pull_requests, :all).and_return([{some_obj: 1}])
+          Github::Client.any_instance.stub_chain(:issues, :assignees, :all).and_return(
+            [{login: 'user1', avatar_url: 'avatar.png'}]
+          )
+        end
 
-        get :index
-        assigns(:repositories).first.open_reqs.should == [{some_obj: 1}, {some_obj: 1}, {some_obj: 1}]
-        # expect(assigns(:repositories)).to eq([{some_obj: 1}, {some_obj: 1}, {some_obj: 1}])
+        it 'assigns any found open PRs to Repository#open_reqs' do
+          get :index
+          assigns(:repositories).first.open_reqs.should == [{some_obj: 1}]
+        end
+
+        it 'assigns any found assignees to Repository#assignees with first item empty' do
+          get :index
+          assigns(:repositories).first.assignees.should == [
+            {login: '', avatar_url: ''},
+            {login: 'user1', avatar_url: 'avatar.png'}
+          ]
+        end
       end
     end
   end

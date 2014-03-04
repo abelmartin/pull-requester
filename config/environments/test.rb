@@ -34,4 +34,6 @@ PullRequester::Application.configure do
 
   # Rails 4 business
   config.eager_load = false
+
+  I18n.enforce_available_locales = false
 end
