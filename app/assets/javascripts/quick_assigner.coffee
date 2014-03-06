@@ -29,7 +29,7 @@ class window.QuickAssigner
       data: {assignee_login: new_assignee_login, pull_number: pull_number}
       dataType: 'json'
       beforeSend: ->
-        $td_avatar.find('img.avatar').attr('src', '/assets/loader.gif')
+        $td_avatar.find('img.avatar').attr('src', '/images/loader.gif')
       success: ->
         $td_avatar.find('img.avatar').attr('src', new_avatar_url)
         $td_avatar.find('.pr_assignee').html(new_assignee_login || 'Unassigned')
