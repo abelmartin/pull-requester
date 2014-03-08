@@ -4,15 +4,27 @@ describe RepositoriesController do
   let(:user){ FactoryGirl.create :user }
 
   describe '#index' do
-    it 'works'
+    it 'redirects if user not signed in' do
+      get :index
+
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe '#create' do
-    it 'works'
+    it 'redirects if user not signed in' do
+      post :create
+
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe '#assign_user' do
-    it 'works'
+    it 'redirects if user not signed in' do
+      put :assign_user, {id: 5}
+
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe '#destroy' do
