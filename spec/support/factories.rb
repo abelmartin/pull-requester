@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :repository do
     user
     name { Bazaar.heroku }
-    owner { Faker::Name.name.camelize }
+    owner { Faker::Internet.user_name }
     gh_id { generate :gh_id }
     assignees {[]}
     open_reqs {[]}

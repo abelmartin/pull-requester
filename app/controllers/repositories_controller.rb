@@ -70,6 +70,7 @@ class RepositoriesController < ApplicationController
         params[:pull_number],
         assignee: params[:assignee_login]
       )
+
       render json: {success: true}
     rescue Exception => e
       render json: {success: false, errors: e}, status: 500

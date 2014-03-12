@@ -4,6 +4,10 @@ class Repository < ActiveRecord::Base
   has_many :pull_request
 
   attr_accessible :gh_id, :name, :owner, :build_service_id
-
   attr_accessor :open_reqs, :assignees
+
+  validates :gh_id, presence: true
+  validates :name, presence: true
+  validates :owner, presence: true
+  validates :user, presence: true
 end
