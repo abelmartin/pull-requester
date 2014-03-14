@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.4'
 
 gem 'jquery-rails'
 gem "haml", "4.0.5"
@@ -15,7 +15,7 @@ gem 'gemoji'
 gem 'newrelic_rpm'
 gem 'protected_attributes'
 
-gem 'sass-rails',   '4.0.1'
+gem 'sass-rails',   '4.0.2'
 gem 'compass-rails'
 gem 'coffee-rails', '4.0.1'
 gem 'uglifier', '>= 1.0.3'

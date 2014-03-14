@@ -4,31 +4,9 @@ class RepositoriesController < ApplicationController
 
   def index
     gh = Github.new(oauth_token: session[:gh_token])
-    org = user = nil
 
-    if org = params[:org] || user = params[:user]
-      @gh_repos = []
-
-      api_params = { page: 0, per_page: 100 }
-
-      api_params[:user] = user if user
-      api_params[:org] = org if org
-
-      @owner = org || user
-
-      loop do
-        api_params[:page] += 1
-        paged_repos = gh.repos.all(api_params)
-        break if paged_repos.empty?
-        @gh_repos |= paged_repos.to_a
-      end
-
-      #let's add the local_gh_id if it matches one we're watching
-      @gh_repos.each do |repo|
-        repo[:local_gh_id] = @repositories.find_by_gh_id(repo[:id]).try(:id)
-      end
-
-      @gh_repos.sort_by!{|repo| repo[:name].upcase}
+    if params[:org] || params[:user]
+      get_repos_by_owner(gh)
     else
       @orgs = gh.orgs.all.to_a
       @orgs << {
@@ -40,8 +18,8 @@ class RepositoriesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @repositories }
+      format.html
+      format.json { render json: @grepositories }
     end
   end
 
@@ -90,5 +68,34 @@ class RepositoriesController < ApplicationController
 
   def set_repositories
     @repositories = current_user.repositories
+  end
+
+  def get_repos_by_owner(gh)
+    org = params[:org]
+    user = params[:user]
+
+    @gh_repos = []
+
+    api_params = { page: 0, per_page: 100 }
+
+    api_params[:user] = user if user
+    api_params[:org] = org if org
+
+    # binding.pry
+    @owner = org || user
+
+    loop do
+      api_params[:page] += 1
+      paged_repos = gh.repos.all(api_params)
+      break if paged_repos.empty?
+      @gh_repos |= paged_repos.to_a
+    end
+
+    #let's add the local_gh_id if it matches one we're watching
+    @gh_repos.each do |repo|
+      repo[:local_gh_id] = @repositories.find_by_gh_id(repo[:id]).try(:id)
+    end
+
+    @gh_repos.sort_by!{|repo| repo[:name].upcase}
   end
 end

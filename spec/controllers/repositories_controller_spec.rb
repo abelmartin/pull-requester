@@ -9,6 +9,33 @@ describe RepositoriesController do
 
       response.should redirect_to(new_user_session_path)
     end
+
+    context 'when user is signed in' do
+      before { sign_in(:user, user) }
+
+      it 'creates a Github client' do
+        Github::Client.
+          should_receive(:new).
+          and_return( double({orgs: double({all: []}) }) )
+          # Ugh, I know, but I want to get through these tests.
+
+        get :index
+      end
+
+      it 'gets org repos' do
+      end
+
+      context 'when scoping params aren\'t passed' do
+        it 'gets all orgs the user can see'
+        it 'gets the current user\'s repo'
+      end
+
+      context 'when a param is passed to get repos' do
+        it 'gets user repos'
+        it 'gets user repos'
+      end
+
+    end
   end
 
   describe '#create' do
