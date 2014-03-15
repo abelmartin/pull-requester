@@ -11,30 +11,43 @@ describe RepositoriesController do
     end
 
     context 'when user is signed in' do
-      before { sign_in(:user, user) }
+      before do
+        sign_in(:user, user)
+        session[:gh_token] = 'ab12cd34'
+      end
 
-      it 'creates a Github client' do
+      it 'gets all orgs the user can see' do
         Github::Client.
           should_receive(:new).
           and_return( double({orgs: double({all: []}) }) )
-          # Ugh, I know, but I want to get through these tests.
 
         get :index
       end
 
-      it 'gets org repos' do
-      end
+      context 'when scoping params are passed' do
+        before do
+          Github::Client.any_instance.stub_chain(:repos, :all).and_return([])
+        end
 
-      context 'when scoping params aren\'t passed' do
-        it 'gets all orgs the user can see'
-        it 'gets the current user\'s repo'
-      end
+        it 'assigns org param as owner' do
+          get :index, org: 'FooBar'
+          assigns(:owner).should == 'FooBar'
+        end
 
-      context 'when a param is passed to get repos' do
-        it 'gets user repos'
-        it 'gets user repos'
-      end
+        it 'assigns user param as owner' do
+          get :index, user: 'BarBaz'
+          assigns(:owner).should == 'BarBaz'
+        end
 
+        it 'assigns org param as owner if user && org are passed' do
+          get :index, org: 'FooBar', user: 'BarBaz'
+          assigns(:owner).should == 'FooBar'
+        end
+
+        it 'gets the current user\'s repo' do
+          pending
+        end
+      end
     end
   end
 
@@ -130,11 +143,11 @@ describe RepositoriesController do
     it 'destroys a repository from the PRer db if the user is authenticated' do
       sign_in(:user, user)
 
-      expect{ delete :destroy, id: repos.first.id }.to change{Repository.count}.from(2).to(1)
+      expect{ delete :destroy, id: repos.first.gh_id }.to change{Repository.count}.from(2).to(1)
     end
 
     it 'redirects if user not signed in' do
-      delete :destroy, id: repos.first.id
+      delete :destroy, id: repos.first.gh_id
 
       response.should redirect_to(new_user_session_path)
     end
@@ -142,7 +155,7 @@ describe RepositoriesController do
     it 'doesn\'t destroy the repo if the user doesn\'t own it' do
       sign_in(:user, FactoryGirl.create(:user))
 
-      expect{ delete :destroy, id: repos.first.id }.not_to change{Repository.count}
+      expect{ delete :destroy, id: repos.first.gh_id }.not_to change{Repository.count}
     end
   end
 end

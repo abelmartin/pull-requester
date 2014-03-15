@@ -3,7 +3,7 @@ class RepositoriesController < ApplicationController
   before_filter :set_repositories
 
   def index
-    gh = Github.new(oauth_token: session[:gh_token])
+    gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
 
     if params[:org] || params[:user]
       get_repos_by_owner(gh)
@@ -56,7 +56,7 @@ class RepositoriesController < ApplicationController
   end
 
   def destroy
-    @repositories.find_by_id(params[:id]).try(:destroy)
+    @repositories.where(gh_id: params[:id]).try(:destroy_all)
 
     respond_to do |format|
       format.html { redirect_to root_url }
@@ -71,31 +71,24 @@ class RepositoriesController < ApplicationController
   end
 
   def get_repos_by_owner(gh)
+    @gh_repos = []
+    api_params = {}
+
     org = params[:org]
     user = params[:user]
 
-    @gh_repos = []
-
-    api_params = { page: 0, per_page: 100 }
-
-    api_params[:user] = user if user
     api_params[:org] = org if org
+    api_params[:user] = user if user && org.nil?
 
-    # binding.pry
     @owner = org || user
 
-    loop do
-      api_params[:page] += 1
-      paged_repos = gh.repos.all(api_params)
-      break if paged_repos.empty?
-      @gh_repos |= paged_repos.to_a
-    end
+    @gh_repos = gh.repos.all(api_params)
 
     #let's add the local_gh_id if it matches one we're watching
     @gh_repos.each do |repo|
       repo[:local_gh_id] = @repositories.find_by_gh_id(repo[:id]).try(:id)
     end
 
-    @gh_repos.sort_by!{|repo| repo[:name].upcase}
+    @gh_repos = @gh_repos.sort_by{|repo| repo[:name].upcase}
   end
 end

@@ -1,6 +1,6 @@
 %h3
   .remove_repository{style: 'float:right;'}
-    = form_tag(repository_path(repository.id), method: :delete) do
+    = form_tag(repository_path(repository.gh_id), method: :delete) do
       %input.btn.btn-danger{type: 'submit', value: 'Delete Watch'}
 
   %a{href: "https://www.github.com/#{repository.owner}/#{repository.name}/pulls", target: '_blank'}

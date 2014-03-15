@@ -4,7 +4,8 @@ gem 'rails', '4.0.4'
 
 gem 'jquery-rails'
 gem "haml", "4.0.5"
-gem "haml-rails", "0.5.3", :group => :development
+gem "haml-rails", "0.5.3"
+gem 'quiet_assets', group: :development
 gem "bootstrap-sass", "~> 3.1.1.0"
 gem 'omniauth'
 gem 'omniauth-github'
