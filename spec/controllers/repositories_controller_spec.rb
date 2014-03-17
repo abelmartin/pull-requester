@@ -16,26 +16,60 @@ describe RepositoriesController do
         session[:gh_token] = 'ab12cd34'
       end
 
-      it 'gets all orgs the user can see' do
+      it 'creates an auto_pagination GH client ' do
         Github::Client.
           should_receive(:new).
+          with(oauth_token: 'ab12cd34', auto_pagination: true).
           and_return( double({orgs: double({all: []}) }) )
 
         get :index
       end
 
+      it 'includes the current user along with other orgs in @orgs' do
+        fake_orgs = [
+          {login: 'aaaa'},
+          {login: 'bbbb'}
+        ]
+
+        Github::Client.
+          should_receive(:new).
+          with(oauth_token: 'ab12cd34', auto_pagination: true).
+          and_return( double({orgs: double({all: fake_orgs}) }) )
+
+        get :index
+        assigns(:orgs).should include({login: 'aaaa'})
+        assigns(:orgs).should include({login: 'bbbb'})
+        assigns(:orgs).should include({
+          login: user.github_login,
+          repos_url: user.github_url,
+          avatar_url: user.avatar_url
+        })
+      end
+
       context 'when scoping params are passed' do
+        let(:fake_repos) do
+          [
+            {name: 'aaa', id:123},
+            {name: 'ccc', id:124},
+            {name: 'bbb', id:125}
+          ]
+        end
+
         before do
-          Github::Client.any_instance.stub_chain(:repos, :all).and_return([])
+          Github::Client.any_instance.stub_chain(:repos, :all).and_return(fake_repos)
         end
 
         it 'assigns org param as owner' do
           get :index, org: 'FooBar'
+
+          assigns(:gh_repos).should == fake_repos.sort_by{|repo| repo[:name].upcase}
           assigns(:owner).should == 'FooBar'
         end
 
         it 'assigns user param as owner' do
           get :index, user: 'BarBaz'
+
+          assigns(:gh_repos).should == fake_repos.sort_by{|repo| repo[:name].upcase}
           assigns(:owner).should == 'BarBaz'
         end
 
@@ -44,8 +78,15 @@ describe RepositoriesController do
           assigns(:owner).should == 'FooBar'
         end
 
-        it 'gets the current user\'s repo' do
-          pending
+        it 'adds the local_gh_id if we\'re watching the repo already' do
+          watched_repo = FactoryGirl.create :repository, user: user, gh_id: 123
+
+          get :index, user: 'BarBaz'
+          assigns(:gh_repos).should include({
+            name: 'aaa',
+            id: 123,
+            local_gh_id: watched_repo.id
+          })
         end
       end
     end
