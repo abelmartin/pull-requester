@@ -78,15 +78,15 @@ describe RepositoriesController do
           assigns(:owner).should == 'FooBar'
         end
 
-        it 'adds the local_gh_id if we\'re watching the repo already' do
+        it 'sets the "watched" flag if we\'re watching the repo already' do
           watched_repo = FactoryGirl.create :repository, user: user, gh_id: 123
 
           get :index, user: 'BarBaz'
-          assigns(:gh_repos).should include({
-            name: 'aaa',
-            id: 123,
-            local_gh_id: watched_repo.id
-          })
+          assigns(:gh_repos).should include(
+            {name: 'aaa', id: 123, watched: true },
+            {name: 'bbb', id: 125, watched: false },
+            {name: 'ccc', id: 124, watched: false },
+          )
         end
       end
     end

@@ -12,14 +12,14 @@
       %td.repository_actions
         = form_tag(repository_path(repo[:id]),
           method: :delete,
-          class: "remove_repository #{('active' if repo[:local_gh_id])}",
+          class: "remove_repository #{('active' if repo[:watched])}",
           id: "remove_repository_#{repo[:id]}") do
           %input{name: 'id', type: 'hidden', value: repo[:id]}
           %input.btn.btn-danger{type: 'submit', value: 'Stop Watching'}
 
         = form_tag(repositories_path,
           method: :post,
-          class: "add_repository #{('active' unless repo[:local_gh_id])}",
+          class: "add_repository #{('active' unless repo[:watched])}",
           id: "add_repository_#{repo[:id]}") do
           %input{name: 'repository[gh_id]', type: 'hidden', value: repo[:id]}
           %input{name: 'repository[name]', type: 'hidden', value: repo[:name]}

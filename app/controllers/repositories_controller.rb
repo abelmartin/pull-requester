@@ -84,9 +84,8 @@ class RepositoriesController < ApplicationController
 
     @gh_repos = gh.repos.all(api_params)
 
-    #let's add the local_gh_id if it matches one we're watching
     @gh_repos.each do |repo|
-      repo[:local_gh_id] = @repositories.find_by_gh_id(repo[:id]).try(:id)
+      repo[:watched] = @repositories.where(gh_id: repo[:id]).present?
     end
 
     @gh_repos = @gh_repos.sort_by{|repo| repo[:name].upcase}
