@@ -1,4 +1,4 @@
-class window.QuickAssigner
+class @QuickAssigner
   start: ->
     self = @
     $('select.chosen').chosen
@@ -10,7 +10,7 @@ class window.QuickAssigner
       self.assign_user(evt, selected_option)
 
   assign_user: (evt, selected_option) ->
-    console.log selected_option
+    # console.log selected_option
     $select = $(evt.currentTarget)
     $td_avatar = $select.parents('td.avatar')
     pull_number = $select.data('pullNumber')

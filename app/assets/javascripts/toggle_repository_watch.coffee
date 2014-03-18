@@ -1,10 +1,10 @@
-class window.ToggleRepositoryWatch
+class @ToggleRepositoryWatch
   constructor: (@$form, @allow_remove = true) ->
     @$td = $(@$form.parents('td'))
 
-    console.log(@$form)
-    console.log(@$td)
-    console.log(@allow_remove)
+    # console.log(@$form)
+    # console.log(@$td)
+    # console.log(@allow_remove)
 
     @$form.submit (e) =>
       e.preventDefault()

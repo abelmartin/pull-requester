@@ -27,6 +27,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'sextant'
+  gem 'teaspoon'
 end
 
 group :test do
