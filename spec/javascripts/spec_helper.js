@@ -1,7 +1,6 @@
 // Teaspoon includes some support files, but you can use anything from your own support path too.
-// require support/jasmine-jquery
-// require support/sinon
-// require support/your-support-file
+//= require support/jasmine-jquery
+//= require support/sinon
 //
 // PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion. Use
 // this polyfill to avoid the confusion.
