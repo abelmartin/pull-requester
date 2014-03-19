@@ -21,4 +21,4 @@
 * `rake rails:update:bin` to create a special bin folder that Heroku needs
 
 * Upgrade Complete, but should have happened *BEFORE* additional changes took place.
-* General lesson learned: When in doubt, delete Gemfile.lock and bunle again. :grin:
+* General lesson learned: When in doubt, delete Gemfile.lock and bundle again. :grin:
