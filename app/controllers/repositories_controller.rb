@@ -84,8 +84,10 @@ class RepositoriesController < ApplicationController
 
     @gh_repos = gh.repos.all(api_params)
 
+    currently_watched = @repositories.to_a
+
     @gh_repos.each do |repo|
-      repo[:watched] = @repositories.where(gh_id: repo[:id]).present?
+      repo[:watched] = currently_watched.one?{ |cw| cw.gh_id == repo[:id] }
     end
 
     @gh_repos = @gh_repos.sort_by{|repo| repo[:name].upcase}
