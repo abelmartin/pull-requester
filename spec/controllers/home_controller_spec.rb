@@ -49,6 +49,13 @@ describe HomeController do
         get :index
       end
 
+      it 'makes an 2 GH client calls for each @repository if verbose' do
+        Github::Client.any_instance.should_receive(:pull_requests).exactly(4).times
+        FactoryGirl.create_list :repository, 2, user:user
+
+        get :index
+      end
+
       context "when calling GH" do
         before do
           FactoryGirl.create :repository, user: user

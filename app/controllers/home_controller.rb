@@ -10,6 +10,12 @@ class HomeController < ApplicationController
       @repositories.each do |repo|
         begin
           repo.open_reqs = gh.pull_requests.all(repo.owner, repo.name)
+          binding.pry
+          # if current_user.verbose
+          #   repo.open_reqs.each do |prs|
+          #     detailed_pr = gh.pull_requests.find(repo.owner, repo.name, prs.number)
+          #   end
+          # end
           repo.assignees = [{login: '', avatar_url: ''}] # initialize
           gh.issues.assignees.all(repo.owner, repo.name).each do |assignee|
             repo.assignees.push( { login: assignee[:login], avatar_url: assignee[:avatar_url] } )

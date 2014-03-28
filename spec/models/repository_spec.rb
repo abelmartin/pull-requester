@@ -7,6 +7,7 @@ describe Repository do
     it {should respond_to :owner}
     it {should respond_to :open_reqs}
     it {should respond_to :assignees}
+    it {should respond_to :comment_count}
     it {should belong_to  :user}
     it {should belong_to  :build_service}
   end

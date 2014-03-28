@@ -3,7 +3,7 @@ class Repository < ActiveRecord::Base
   belongs_to :build_service
   has_many :pull_request
 
-  attr_accessor :open_reqs, :assignees
+  attr_accessor :open_reqs, :assignees, :comment_count
 
   validates :gh_id, presence: true
   validates :name, presence: true
