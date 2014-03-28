@@ -24,7 +24,7 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @repository = @repositories.build(params[:repository])
+    @repository = @repositories.build(acceptable_repository_params)
 
     respond_to do |format|
       if @repository.save
@@ -91,5 +91,9 @@ class RepositoriesController < ApplicationController
     end
 
     @gh_repos = @gh_repos.sort_by{|repo| repo[:name].upcase}
+  end
+
+  def acceptable_repository_params
+    params.require(:repository).permit(:user_id, :name, :owner, :gh_id)
   end
 end

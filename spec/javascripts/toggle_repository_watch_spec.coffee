@@ -2,7 +2,7 @@ describe 'ToggleRepositoryWatch', ->
   toggler = null
 
   beforeEach ->
-    toggler = new ToggleRepositoryWatch()
+    toggler = new ToggleRepositoryWatch($('.fake'))
 
   it 'provides sanity', ->
     expect(true).toBe(true)

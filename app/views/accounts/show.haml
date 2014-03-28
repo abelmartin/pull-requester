@@ -1,6 +1,11 @@
-%h2= "Welcome to user settings, #{current_user.name}"
-Account editing forms coming soon, including:
+%h2= "#{current_user.name}'s Account"
+
+= simple_form_for current_user, url: account_path do |f|
+  = f.input :name
+  = f.input :verbose, as: :radio_buttons
+  = f.submit 'Update!'
+
+%h3 In the future you'll also be able to...
 %ul
-  %li Setting your API keys
-  %li Updating the name you see in the nav
+  %li Set your CI keys on a per repo basis
   %li Ponnies!

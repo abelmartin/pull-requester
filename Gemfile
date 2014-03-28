@@ -14,12 +14,13 @@ gem 'github_api'
 gem 'github-markdown'
 gem 'gemoji'
 gem 'newrelic_rpm'
-gem 'protected_attributes'
 
 gem 'sass-rails',   '4.0.2'
 gem 'compass-rails'
 gem 'coffee-rails', '4.0.1'
 gem 'uglifier', '>= 1.0.3'
+
+gem 'simple_form'
 
 group :development, :test do
   gem 'mysql2'
