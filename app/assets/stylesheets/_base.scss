@@ -51,6 +51,29 @@ td {
   }
 }
 
+.avatar {
+  height: 80px;
+  width: 80px;
+}
+
+.branch {
+  margin-bottom: 10px;
+}
+
+.content {
+  @include border-radius( 0 0 6px 6px );
+
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+}
+
+.chosen-container {margin-top: 10px; margin-bottom: 10px;}
+
+.oauth_link{
+  display: inline-block;
+  margin-top: 15px;
+}
+
 .repository_actions form{
   display: none;
 
@@ -96,21 +119,3 @@ td {
     }
   }
 }
-
-.branch {
-  margin-bottom: 10px;
-}
-
-.avatar {
-  height: 80px;
-  width: 80px;
-}
-
-.content {
-  @include border-radius( 0 0 6px 6px );
-
-  padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-}
-
-.chosen-container {margin-top: 10px; margin-bottom: 10px;}

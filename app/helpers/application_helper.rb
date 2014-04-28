@@ -1,12 +1,14 @@
 module ApplicationHelper
   def circle_ci_badge(owner, repo, branch)
+    unknown_image_url = asset_path('status_unknown_2.png', type: :image)
+
     base_url = "https://circleci.com/gh/#{owner}/"
     full_url = "#{base_url}#{u(repo)}/tree/#{u(branch)}"
     badge_url = "#{full_url}.png"
     link_to(full_url, target: '_blank') do
       image_tag(
         badge_url,
-        onerror: "this.onerror=null;this.src='/assets/status_unknown_2.png'"
+        onerror: "this.onerror=null;this.src='#{unknown_image_url}'"
       )
     end
   end
