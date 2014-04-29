@@ -2,10 +2,11 @@
 
 $avatar_width: 100px;
 $border_color: rgb(212, 212, 212);
-$status_badge_width: 250px;
-$site_width: 1170px;
 $iconSpritePath: asset-url('glyphicons-halflings.png', image);
 $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
+$site_width: 1170px;
+$standard_padding: 10px;
+$status_badge_width: 250px;
 @import "bootstrap";
 
 body { padding-top: 60px; } // Necessary for the fixed nav.
@@ -117,5 +118,20 @@ td {
       border-bottom: none;
       a { padding-bottom: 0; }
     }
+  }
+}
+
+.organization {
+  @include border-radius( 10px );
+  border: solid 2px $border_color;
+  display: inline-block;
+  padding: $standard_padding;
+  margin: $standard_padding ($standard_padding * 3) $standard_padding 0;
+  text-align: center;
+
+  h2 { margin: $standard_padding 0 0; }
+  img {
+    height: 100px;
+    width: 100px;
   }
 }

@@ -1,25 +1,7 @@
-%table#organizations
-  %tr
-    %th Logo
-    %th Description
-    %th{style: 'text-align:center'} GitHub
+#organizations
   - @orgs.each do |org|
-    %tr
-      %td{style: 'width: 120px;'}
-        %a{href: user_or_repo_href(org)}
-          %img{src: org[:avatar_url], style: 'height: 80px; width: 80px;'}
-      %td
-        %h2
-          %a{href: user_or_repo_href(org)}= org[:login]
-      %td{style: 'width: 120px; text-align: center;'}
-        %a{href: "https://github.com/#{org[:login]}", target: '_blank'}
-          %img.random_octocat{src: random_octocat_src,
-            style: 'height: 100px; width: 100px;'}
-
-%footer{style: 'margin-bottom: 30px;'}
-  All Octocats come from
-  %a{href: 'http://octodex.github.com/',
-  target: '_blank', style:'font-weight: bold; color: blue;'}
-    the octodex
-  randomly, and without any permision from GitHub.
-
+    .organization
+      %a{href: user_or_repo_href(org)}
+        %img{src: org[:avatar_url]}
+      %h2
+        %a{href: user_or_repo_href(org)}= org[:login]

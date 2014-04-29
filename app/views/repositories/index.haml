@@ -1,9 +1,9 @@
 - if @gh_repos
-  %h1= "Listing #{@owner}'s Repositories(#{ @gh_repos.size })"
+  %h2= "#{@owner}'s repositories:"
   = render 'repo_list'
 
 - elsif @orgs
-  %h1= "Listing Organizations(#{ @orgs.size })"
+  %h2= "Your Organizations:"
   = render 'org_list'
 
 / We can be more efficient here.

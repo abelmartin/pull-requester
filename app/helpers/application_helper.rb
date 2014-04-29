@@ -47,18 +47,4 @@ module ApplicationHelper
       "/repositories?user=#{org[:login]}"
     end
   end
-
-  def random_octocat_src
-
-    octocats = %w(
-      original
-      orderedlistocat linktocat plumber
-      octotron baracktocat
-      collabocats ironcat jean-luc-picat
-      spocktocat swagtocat hubot
-      trekkie
-    )
-
-    "http://octodex.github.com/images/#{octocats.sample}.jpg"
-  end
 end
