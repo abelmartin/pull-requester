@@ -11,16 +11,25 @@ $status_badge_width: 250px;
 
 body { padding-top: 60px; } // Necessary for the fixed nav.
 
-img[title=emoji]{
-  height: 20px;
-  width: 20px;
-}
+form.edit_user {margin-top: $standard_padding * 2;}
 
 h1.title { color: white; }
 
 h3 { padding-top: 20px; }
 
 h4 { margin-top: 0; }
+
+img[title=emoji]{
+  height: 20px;
+  width: 20px;
+}
+
+input[type='submit'] { margin-top: $standard_padding; }
+
+label {
+  display: inline-block;
+  margin-right: $standard_padding * 2;
+}
 
 table {
   margin-bottom: 15px;
