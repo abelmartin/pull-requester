@@ -16,6 +16,35 @@ describe HomeController do
         response.status.should == 200
         controller.should render_template :index
       end
+
+      context "assigning @oauth_gh_context" do
+        it 'assigns :github for empty subdomains' do
+          get :index
+
+          expect(assigns :oauth_gh_context).to eq(:github)
+        end
+
+        it 'assigns :github for "local"' do
+          request.host = 'local.example.com'
+          get :index
+
+          expect(assigns :oauth_gh_context).to eq(:github)
+        end
+
+        it 'assigns :github for "www"' do
+          request.host = 'www.example.com'
+          get :index
+
+          expect(assigns :oauth_gh_context).to eq(:github)
+        end
+
+        it 'assigns a symbol of the subdomain when != "www" or "local"' do
+          request.host = 'hamsterdance.example.com'
+          get :index
+
+          expect(assigns :oauth_gh_context).to eq(:hamsterdance)
+        end
+      end
     end
 
     context "when user signed in" do

@@ -20,4 +20,4 @@
           target: '_blank'
         %li= link_to 'Logout', destroy_user_session_path, method: :delete
     - else
-      %a.oauth_link{href: user_omniauth_authorize_path(:github)} Login with GitHub
+      %a.oauth_link{href: user_omniauth_authorize_path(@oauth_gh_context)} Login with GitHub

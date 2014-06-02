@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-      gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
+      gh = GithubClientWrapper.get_client(session[:gh_token], request.subdomain)
       @repositories = current_user.repositories
       @repositories.each do |repo|
         begin
@@ -19,6 +19,12 @@ class HomeController < ApplicationController
           #Consider real messages in the future for 401 vs 404 vs 500,etc.
           repo.open_reqs = nil
         end
+      end
+    else
+      if ['', 'www', 'local'].include?(request.subdomain)
+        @oauth_gh_context = :github
+      else
+        @oauth_gh_context = request.subdomain.to_sym
       end
     end
   end

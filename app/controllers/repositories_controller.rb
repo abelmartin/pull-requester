@@ -3,7 +3,7 @@ class RepositoriesController < ApplicationController
   before_filter :set_repositories
 
   def index
-    gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
+    gh = GithubClientWrapper.get_client(session[:gh_token], request.subdomain)
 
     if params[:org] || params[:user]
       get_repos_by_owner(gh)
@@ -40,7 +40,7 @@ class RepositoriesController < ApplicationController
   def assign_user
     begin
       repository = @repositories.find_by_id params[:id]
-      gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
+      gh = GithubClientWrapper.get_client(session[:gh_token], request.subdomain)
 
       gh.issues.edit(
         repository.owner,
