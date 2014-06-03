@@ -13,7 +13,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   gh_options = {scope: 'user,repo'}
   if github_credentials['client_options']
-    gh_options.merge!(github_credentials['client_options'])
+    gh_options.merge!({client_options: github_credentials['client_options']})
   end
 
   provider :github,
