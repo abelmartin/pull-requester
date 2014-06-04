@@ -10,6 +10,7 @@ class GithubClientWrapper
 
     unless ['', 'www', 'local'].include? subdomain
       client_config.merge!( @config_yml )
+      client_config['adapter'] = client_config['adapter'].to_sym
     end
 
     Github.new(client_config)
