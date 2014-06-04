@@ -4,8 +4,11 @@ else
   github_credentials = {
     'client_id' => ENV['GH_CLIENT_ID'],
     'client_secret' => ENV['GH_CLIENT_SECRET'],
-    'client_options' => JSON.parse( ENV['GH_CLIENT_OPTIONS'] )
   }
+
+  if ENV['GH_CLIENT_OPTIONS']
+    github_credentials['client_options'] = JSON.parse( ENV['GH_CLIENT_OPTIONS'] )
+  end
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
