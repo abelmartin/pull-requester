@@ -1,5 +1,5 @@
-if File.exists?("#{Rails.root}/config/github_credentials.yml")
-  github_credentials = YAML.load_file("#{Rails.root}/config/github_credentials.yml")
+if File.exists?("#{Rails.root}/config/github_oauth_credentials.yml")
+  github_credentials = YAML.load_file("#{Rails.root}/config/github_oauth_credentials.yml")
 else
   github_credentials = {
     'client_id' => ENV['GH_CLIENT_ID'],
@@ -13,13 +13,22 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   gh_options = {scope: 'user,repo'}
   if github_credentials['client_options']
-    gh_options.merge!({client_options: github_credentials['client_options']})
+    gh_options.merge!({})
   end
 
-  provider :github,
-    github_credentials['client_id'],
-    github_credentials['client_secret'],
-    gh_options
+  # if github_credentials['client_options']
+    provider :github,
+      github_credentials['client_id'],
+      github_credentials['client_secret'],
+      gh_options
+      # scope: 'user,repo',
+      # client_options: github_credentials['client_options']
+  # else
+  #   provider :github,
+  #     github_credentials['client_id'],
+  #     github_credentials['client_secret'],
+  #     scope: 'user,repo'
+  # end
 end
 
 #OmniAuth.config.logger = Rails.logger
