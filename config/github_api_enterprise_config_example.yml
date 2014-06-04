@@ -1,4 +1,5 @@
-endpoint:    'https://github.my_awesome_domain.com/api/v3'
-site:        'https://github.my_awesome_domain.com'
-adapter:     :net_http
-ssl:         {:verify => false}
+endpoint: 'https://git.my_awesome_domain.com/api/v3'
+site: 'https://git.my_awesome_domain.com'
+adapter: :net_http
+ssl:
+  verify: false

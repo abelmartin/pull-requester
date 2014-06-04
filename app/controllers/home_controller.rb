@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-      gh = Github.new(oauth_token: session[:gh_token], auto_pagination: true)
+      gh = GithubClientWrapper.get_client(session[:gh_token], request.subdomain)
       @repositories = current_user.repositories
       @repositories.each do |repo|
         begin
