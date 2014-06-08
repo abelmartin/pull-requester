@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.1.2'
 gem 'rails', '4.0.5'
 
 gem 'jquery-rails'
@@ -26,7 +26,7 @@ group :development, :test do
   gem 'mysql2'
   gem 'pry'
   gem 'pry-rails'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'sextant'
   gem 'teaspoon'
 end
